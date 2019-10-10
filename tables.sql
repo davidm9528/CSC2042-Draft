@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS 'Manager'
 'Manager_Sname' char,
 -----
 -----
------
 PRIMARY KEY ('Manager_ID'),
-FOREIGN KEY ('Building_ID') References 'Building' ('Building_ID');
+FOREIGN KEY ('Building_ID') References 'Building' ('Building_ID'),
+FOREIGN KEY ('Apartment_Block') References 'Apartment' ('Apartment_Block')
 );
 
 
