@@ -29,4 +29,4 @@ INSERT INTO 'Bank Account'('BankAccountID','PersonID','AccountNumber','SortCode'
 VALUES(2,2,25645656,987925);
 
 INSERT INTO 'Lease'('TenantID','ApartmentID','ManagerID','Status','Cost')
-VALUES(1,1,1TRUE,130);
+VALUES(1,1,1,TRUE,130);
