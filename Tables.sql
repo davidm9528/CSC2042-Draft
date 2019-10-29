@@ -44,8 +44,8 @@ FOREIGN KEY ('PersonID') References 'Person' ('PersonID'),
 --Building--
 CREATE TABLE IF NOT EXISTS 'Building' (
 'BuildingID' int NOT NULL AUTO_INCREMENT UNIQUE,
-'BuildingName' varchar(20),
-'Address' varchar(255),
+'BuildingNum' varchar(3),
+'Street' varchar(255),
 'PostCode' varchar(7),
 PRIMARY KEY ('BuildingID'),
 );
