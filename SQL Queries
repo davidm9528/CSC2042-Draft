@@ -1,0 +1,21 @@
+SQL potential queries
+
+RWS = Real world scenario
+
+1.	Find the first name, last name and contact number of all the tenants with a disability living in elms.
+RWS = There’s changes to the pricing of disabled rooms and queens wants to let the disabled tenants know.
+
+2.	Find the contact number and name of all the managers who manage two different buildings in different apartments.
+RWS = Queens accommodation wants to ensure that managers with multiple responsibilities balance their time effectively.
+
+3.	Find the name of the building and first name and last name of tenants living in an apartment with less than 5 people.
+RWS = There are foreign exchange students e.g. Erasmus studying for a semester and queens accommodation wants to fill those apartments that have less people first.
+
+4.	Find the first name and contact number of technicians who are skilled in carpentry.
+RWS = Queens is looking for someone to fix a problem.
+
+5.	Find the first name, last name, contact number and office id(s) of the manager of oak in elms.
+RWS = A student has lost the contact information for the manager of his apartment and wants to know how he can contact them.
+
+6.	Find the first name, contact number and emergency contact number for all the tenants and managers of elms.
+RWS = A bomb scare on the adjoining street means there is no coming or going from the building at this time. QA would like to let everyone involved know.
