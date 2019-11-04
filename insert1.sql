@@ -33,6 +33,9 @@ VALUES(2,256845656,985585);
 INSERT INTO `Lease`(`ApartmentID`,`ManagerID`,`StartDate`,`Duration`,`Rent`)
 VALUES(1,1,'2019-01-01',9,130);
 
+INSERT INTO `LeaseTenants`(`LeaseID`,`TenantID`)
+VALUES(1,1);
+
 --Inserting a Technician--
 INSERT INTO `Person`(`FName`,`SName`,`ContactNumber`,`DoB`,`EmergencyContactName`,`EmergencyContactNumber`)
 VALUES('Ronan','Martin',07763549871,'1999-01-15','Jason Martin',07855643251);
