@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS Person (
 PersonID int NOT NULL AUTO_INCREMENT UNIQUE,
-FName varchar(20),
-SName varchar(20),
-ContactNumber varchar(255),
+FName varchar(20) NOT NULL,
+SName varchar(20) NOT NULL,
+ContactNumber varchar(13),
 DoB date, 
 EmergencyContactName varchar(255) NOT NULL,
-EmergencyContactNumber varchar(255) NOT NULL,
+EmergencyContactNumber varchar(13) NOT NULL,
 INDEX Fname_SName (FName, SName)
 );
 
@@ -25,7 +25,7 @@ FOREIGN KEY (PersonID) References Person (PersonID)
 );
 
 CREATE TABLE IF NOT EXISTS Bank_Account (
-BankAccountID int NOT NULL,
+BankAccountID int NOT NULL AUTO_INCREMENT UNIQUE,
 PersonID int NOT NULL,
 AccountNumber int NOT NULL, 
 SortCode int NOT NULL,
@@ -75,8 +75,7 @@ FOREIGN KEY (ManagerID) References Manager (ManagerID),
 INDEX StartDate_ApartmentID (StartDate,ApartmentID)
 );
 
-CREATE TABLE IF NOT EXISTS LeaseTenants
-(
+CREATE TABLE IF NOT EXISTS LeaseTenants (
 LeaseID INT NOT NULL,
 TenantID INT NOT NULL,
 FOREIGN KEY(LeaseID) REFERENCES Lease(LeaseID),
@@ -107,10 +106,11 @@ ContractedJobsID int NOT NULL AUTO_INCREMENT UNIQUE,
 ManagerID int NOT NULL,
 TechnicianID int NOT NULL,
 ApartmentID int NOT NULL,
+WorkRequired TEXT NOT NULL,
 WorkCompleted BOOLEAN NOT NULL DEFAULT FALSE,
 PRIMARY KEY (ContractedJobsID),
 FOREIGN KEY (ManagerID) References Manager (ManagerID),
 FOREIGN KEY (TechnicianID) References Technician (TechnicianID),
 FOREIGN KEY (ApartmentID) References Apartment (ApartmentID),
-INDEX TechnicianID_ApartmentID_BuildingID (TechnicianID,ApartmentID,BuildingID)
+INDEX TechnicianID_ApartmentID (TechnicianID,ApartmentID)
 );
