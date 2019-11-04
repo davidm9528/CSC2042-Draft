@@ -94,7 +94,6 @@ FOREIGN KEY (ManagerID) References Manager (ManagerID)
 CREATE TABLE IF NOT EXISTS Technician (
 TechnicianID int NOT NULL AUTO_INCREMENT UNIQUE,
 EmployeeID int NOT NULL,
-Pay Double NOT NULL,
 Skills set('carpentry','plumbing','electrical') NOT NULL,
 PRIMARY KEY (TechnicianID),
 FOREIGN KEY (EmployeeID) References Employee (EmployeeID),
