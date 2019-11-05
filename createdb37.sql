@@ -78,8 +78,8 @@ INDEX StartDate_ApartmentID (StartDate,ApartmentID)
 CREATE TABLE IF NOT EXISTS LeaseTenants (
 LeaseID INT NOT NULL,
 TenantID INT NOT NULL,
-FOREIGN KEY (LeaseID) REFERENCES Lease(LeaseID),
-FOREIGN KEY (TenantID) REFERENCES Tenant(TenantID)
+FOREIGN KEY(LeaseID) REFERENCES Lease(LeaseID),
+FOREIGN KEY(TenantID) REFERENCES Tenant(TenantID)
 );
 
 CREATE TABLE IF NOT EXISTS Office (
@@ -94,20 +94,22 @@ FOREIGN KEY (ManagerID) References Manager (ManagerID)
 CREATE TABLE IF NOT EXISTS Technician (
 TechnicianID int NOT NULL AUTO_INCREMENT UNIQUE,
 EmployeeID int NOT NULL,
+Skills set('carpentry','plumbing','electrical') NOT NULL,
 PRIMARY KEY (TechnicianID),
-FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
+FOREIGN KEY (EmployeeID) References Employee (EmployeeID),
+INDEX Skills_Index (Skills)
 );
 
-CREATE TABLE IF NOT EXISTS Skill(
-SkillID INT NOT NULL AUTO_INCREMENT UNIQUE,
-SkillName VARCHAR(255),
-PRIMARY KEY(SkillID),
-INDEX(SkillName)
-);
-
-CREATE TABLE IF NOT EXISTS TechnicianSkill(
-TechnicianID INT NOT NULL,
-SkillID INT NOT NULL,
-FOREIGN KEY(TechnicianID) REFERENCES Technician(TechnicianID),
-FOREIGN KEY(SkillID) REFERENCES Skill(SkillID)
+CREATE TABLE IF NOT EXISTS ContractedJobs (
+ContractedJobsID int NOT NULL AUTO_INCREMENT UNIQUE,
+ManagerID int NOT NULL,
+TechnicianID int NOT NULL,
+ApartmentID int NOT NULL,
+WorkRequired TEXT NOT NULL,
+WorkCompleted BOOLEAN NOT NULL DEFAULT FALSE,
+PRIMARY KEY (ContractedJobsID),
+FOREIGN KEY (ManagerID) References Manager (ManagerID),
+FOREIGN KEY (TechnicianID) References Technician (TechnicianID),
+FOREIGN KEY (ApartmentID) References Apartment (ApartmentID),
+INDEX TechnicianID_ApartmentID (TechnicianID,ApartmentID)
 );
