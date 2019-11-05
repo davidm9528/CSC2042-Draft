@@ -44,6 +44,12 @@ PostCode varchar(7),
 PRIMARY KEY (BuildingID)
 );
 
+CREATE TABLE IF NOT EXISTS Manager (
+ManagerID int NOT NULL AUTO_INCREMENT UNIQUE,
+EmployeeID int NOT NULL,
+PRIMARY KEY (ManagerID),
+FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
+);
 
 
 CREATE TABLE IF NOT EXISTS Apartment (
@@ -53,8 +59,7 @@ ManagerID int NOT NULL,
 Block varchar(32),
 Type varchar(32),
 HMO BOOLEAN, 
-PRIMARY KEY (AppartmentID),
-PRIMARY KEY (BuildingID),
+PRIMARY KEY (ApartmentID),
 FOREIGN KEY (BuildingID) References Building (BuildingID),
 FOREIGN KEY (ManagerID) References Manager (ManagerID)
 );
@@ -66,22 +71,13 @@ LeaseID int NOT NULL AUTO_INCREMENT UNIQUE,
 TenantID int NOT NULL,
 ApartmentID int NOT NULL,
 ManagerID int NOT NULL,
-Status BOOLEAN NOT NULL, -- Ongoing(true) or expired(false)
+Status BOOLEAN NOT NULL,
 Cost int NOT NULL,
 PRIMARY KEY (LeaseID),
 FOREIGN KEY (TenantID) References Tenant(TenantID),
 FOREIGN KEY (ApartmentID) References Apartment (ApartmentID),
 FOREIGN KEY (ManagerID) References Manager (ManagerID)
 );
-
-
-CREATE TABLE IF NOT EXISTS Manager (
-ManagerID int NOT NULL AUTO_INCREMENT UNIQUE,
-EmployeeID int NOT NULL,
-PRIMARY KEY (ManagerID),
-FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
-);
-
 
 
 CREATE TABLE IF NOT EXISTS Office (
@@ -94,6 +90,12 @@ FOREIGN KEY (ManagerID) References Manager (ManagerID)
 );
 
 
+CREATE TABLE IF NOT EXISTS Technicians (
+TechnicianID int NOT NULL AUTO_INCREMENT UNIQUE,
+EmployeeID int NOT NULL,
+PRIMARY KEY (TechnicianID),
+FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
+);
 
 CREATE TABLE IF NOT EXISTS ContractedJobs (
 ContractedJobsID int NOT NULL AUTO_INCREMENT UNIQUE,
@@ -105,16 +107,6 @@ FOREIGN KEY (ManagerID) References Manager (ManagerID),
 FOREIGN KEY (TechnicianID) References Technicians (TechnicianID),
 FOREIGN KEY (ApartmentID) References Apartment (ApartmentID)
 );
-
-
-
-CREATE TABLE IF NOT EXISTS Technicians (
-TechnicianID int NOT NULL AUTO_INCREMENT UNIQUE,
-EmployeeID int NOT NULL,
-PRIMARY KEY (TechnicianID),
-FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
-);
-
 
 
 CREATE TABLE IF NOT EXISTS EmployeeContract (
