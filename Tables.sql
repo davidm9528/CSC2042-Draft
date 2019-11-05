@@ -2,16 +2,18 @@ CREATE TABLE IF NOT EXISTS Person (
 PersonID int NOT NULL AUTO_INCREMENT UNIQUE,
 FName varchar(20),
 SName varchar(20),
-DoB date, 
 ContactNo varchar(11),
-NextOfKinNo varchar(11),
-Diabilities BOOLEAN
+DoB date, 
+EmergencyContactName varchar(255),
+EmergencyContactNumber varchar(11),
+Disabilities BOOLEAN
 );
 
 
 CREATE TABLE IF NOT EXISTS Employee (
 EmployeeID int NOT NULL AUTO_INCREMENT UNIQUE,
 PersonID int NOT NULL,
+Salary int,
 FOREIGN KEY (PersonID) References Person (PersonID),
 PRIMARY KEY (EmployeeID)
 );
@@ -26,11 +28,11 @@ FOREIGN KEY (PersonID) References Person (PersonID)
 );
 
 
-CREATE TABLE IF NOT EXISTS BankAccount (
+CREATE TABLE IF NOT EXISTS Bank_Account (
 BankAccountID int NOT NULL,
 PersonID int NOT NULL,
-AccountNumber smallint NOT NULL, 
-SortCode smallint NOT NULL,
+AccountNumber int varchar(8) NOT NULL, 
+SortCode int varchar(6) NOT NULL,
 PRIMARY KEY (BankAccountID),
 FOREIGN KEY (PersonID) References Person (PersonID)
 );
@@ -38,7 +40,7 @@ FOREIGN KEY (PersonID) References Person (PersonID)
 
 CREATE TABLE IF NOT EXISTS Building (
 BuildingID int NOT NULL AUTO_INCREMENT UNIQUE,
-BuildingNum varchar(3),
+BuildingName varchar(3),
 Street varchar(255),
 PostCode varchar(7),
 PRIMARY KEY (BuildingID)
@@ -54,11 +56,12 @@ FOREIGN KEY (EmployeeID) References Employee (EmployeeID)
 
 CREATE TABLE IF NOT EXISTS Apartment (
 ApartmentID int NOT NULL AUTO_INCREMENT UNIQUE,
+ApartmentNo int NOT NULL,
+NumBedrooms int,
+NumBathrooms int, 
+TotalArea int, 
 BuildingID int NOT NULL,
 ManagerID int NOT NULL,
-Block varchar(32),
-Type varchar(32),
-HMO BOOLEAN, 
 PRIMARY KEY (ApartmentID),
 FOREIGN KEY (BuildingID) References Building (BuildingID),
 FOREIGN KEY (ManagerID) References Manager (ManagerID)
@@ -102,6 +105,8 @@ ContractedJobsID int NOT NULL AUTO_INCREMENT UNIQUE,
 ManagerID int NOT NULL,
 TechnicianID int NOT NULL,
 ApartmentID int NOT NULL,
+WorkRequired TEXT,
+WorkCompleted BOOLEAN,
 PRIMARY KEY (ContractedJobsID),
 FOREIGN KEY (ManagerID) References Manager (ManagerID),
 FOREIGN KEY (TechnicianID) References Technicians (TechnicianID),
